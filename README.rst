@@ -8,7 +8,7 @@ edeposit.amqp.models
         :target: https://pypi.python.org/pypi/edeposit.amqp.models
 
 
-Input structures for the edeposit website.
+Input structures for the eDeposit website and AMQP communication.
 
 Documentation
 -------------

@@ -20,9 +20,9 @@ LONG_DESCRIPTION = "\n\n".join([
 setup(
     name='edeposit.amqp.models',
     version=getVersion(CHANGELOG),
-    description='Input structures for the edeposit website.',
+    description='Input structures for the eDeposit website and amqp communication.',
     long_description=LONG_DESCRIPTION,
-    url='https://github.com/jstavel/edeposit.amqp.models',
+    url='https://github.com/edeposit/edeposit.amqp.models',
 
     author='Jan Stavěl',
     author_email='stavel.jan@gmail.com',
