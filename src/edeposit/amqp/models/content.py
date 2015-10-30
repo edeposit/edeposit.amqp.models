@@ -19,7 +19,7 @@ epublication = Schema({
     Optional('isbn_souboru_publikaci'): And(unicode,len),
     'poradi_vydani': And(unicode,len),
     'misto_vydani': And(unicode,len),
-    'rok_vydani': And(unicode,len),
+    'rok_vydani': int,
     'nakladatel_vydavatel': producent.validate,
-    'zpracovatel_zaznamu': declarer.validate
+    'zpracovatel_zaznamu': declarer.validate,
 })
