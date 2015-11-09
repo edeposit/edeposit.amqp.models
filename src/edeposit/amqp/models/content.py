@@ -13,19 +13,18 @@ from schema import Optional
 
 from isbn_validator import is_valid_isbn
 
-from . import riv
-from . import libraries
+import riv
+import libraries
 
 
 # Validators ==================================================================
-epublication = Schema({
+EpublicationValidator = Schema({
     'title': And(unicode, len),
     'poradi_vydani': And(unicode, len),
     'misto_vydani': And(unicode, len),
     'rok_vydani': int,
-    'misto_vydani': And(unicode, len),
-    "libraries_that_can_access": partial(contains, libraries.ids),
     'zpracovatel_zaznamu': "",
+
     Optional('podnazev'): And(unicode, len),
     Optional('cast'): And(unicode, len),
     Optional('nazev_casti'): And(unicode, len),
@@ -37,7 +36,8 @@ epublication = Schema({
     Optional('nakladatel_vydavatel'): And(unicode, len),
     Optional('vydano_v_koedici_s'): And(unicode, len),
     Optional('cena'): int,
-    Optional("category_for_riv"): And(int, partial(contains, riv.ids)),
     Optional("url"): And(str, len),
-    Optional("anotace"): And(unicode, len)
+    Optional("anotace"): And(unicode, len),
+    Optional("libraries_that_can_access"): partial(contains, libraries.ids),
+    Optional("category_for_riv"): And(int, partial(contains, riv.ids)),
 })
