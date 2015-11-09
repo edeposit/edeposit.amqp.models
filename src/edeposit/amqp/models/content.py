@@ -7,9 +7,8 @@
 from functools import partial
 from operator import contains
 
-from schema import Schema
 from schema import And
-from schema import Decimal
+from schema import Schema
 from schema import Optional
 
 from isbn_validator import is_valid_isbn
@@ -37,7 +36,7 @@ epublication = Schema({
     Optional('author3'): And(unicode, len),
     Optional('nakladatel_vydavatel'): And(unicode, len),
     Optional('vydano_v_koedici_s'): And(unicode, len),
-    Optional('cena'): Decimal,
+    Optional('cena'): int,
     Optional("category_for_riv"): And(int, partial(contains, riv.ids)),
     Optional("url"): And(str, len),
     Optional("anotace"): And(unicode, len)
