@@ -38,6 +38,9 @@ EpublicationValidator = Schema({
     Optional('cena'): int,
     Optional("url"): And(str, len),
     Optional("anotace"): And(unicode, len),
-    Optional("libraries_that_can_access"): partial(contains, libraries.ids),
-    Optional("category_for_riv"): And(int, partial(contains, riv.ids)),
+    Optional("libraries_that_can_access"): partial(
+        contains,
+        libraries.LIBRARY_IDS
+    ),
+    Optional("category_for_riv"): And(int, partial(contains, riv.RIV_CAT_IDS)),
 })
