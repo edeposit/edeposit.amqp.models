@@ -22,8 +22,8 @@ EpublicationValidator = Schema({
     'title': And(unicode, len),
     'poradi_vydani': And(unicode, len),
     'misto_vydani': And(unicode, len),
-    'rok_vydani': int,
-    'zpracovatel_zaznamu': "",
+    'rok_vydani': lambda x: int(x),
+    'zpracovatel_zaznamu': And(unicode, len),
 
     Optional('podnazev'): And(unicode, len),
     Optional('cast'): And(unicode, len),
