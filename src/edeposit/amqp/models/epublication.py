@@ -35,12 +35,16 @@ EpublicationValidator = Schema({
     Optional('author3'): And(unicode, len),
     Optional('nakladatel_vydavatel'): And(unicode, len),
     Optional('vydano_v_koedici_s'): And(unicode, len),
-    Optional('cena'): int,
+    Optional('cena'): lambda x: float(x),
+    Optional('jednotka_ceny'): And(unicode, len),
     Optional("url"): And(str, len),
     Optional("anotace"): And(unicode, len),
     Optional("libraries_that_can_access"): partial(
         contains,
         libraries.LIBRARY_IDS
     ),
-    Optional("category_for_riv"): And(int, partial(contains, riv.RIV_CAT_IDS)),
+    Optional("category_for_riv"): And(  # TODO: rewrite for better error messages (all partials)
+        lambda x: int(x),
+        partial(contains, riv.RIV_CAT_IDS)
+    ),
 })
