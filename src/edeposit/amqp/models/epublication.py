@@ -36,7 +36,10 @@ EpublicationValidator = Schema({
         len,
         error=_str_error("misto_vydani")
     ),
-    'rok_vydani': lambda x: int(x),
+    'rok_vydani': Use(
+        int,
+        error="Nesprávný formát pro `rok_vydani`. Očekáván int."
+    ),
     'zpracovatel_zaznamu': And(
         basestring,
         len,
