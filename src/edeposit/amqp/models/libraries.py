@@ -26,4 +26,4 @@ LIBRARY_MAP = {
     'krajska-knihovna-frantiska-bartose-ve-zline': 'Krajská knihovna Františka Bartoše ve Zlíně',
 }
 
-LIBRARY_IDS = LIBRARY_MAP.keys()
+LIBRARY_IDS = set(LIBRARY_MAP.keys())
