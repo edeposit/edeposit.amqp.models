@@ -4,8 +4,6 @@
 # Interpreter version: python 2.7
 #
 # Imports =====================================================================
-from functools import partial
-
 from schema import And
 from schema import Use
 from schema import Schema
@@ -39,7 +37,7 @@ def strAndISBN(item_name):
 
 
 EpublicationValidator = Schema({
-    'title': strAnd("title"),
+    'nazev': strAnd("title"),
     'poradi_vydani': strAnd("poradi_vydani"),
     'misto_vydani': strAnd("misto_vydani"),
     'rok_vydani': Use(
@@ -54,9 +52,9 @@ EpublicationValidator = Schema({
     Optional('nazev_casti'): strAnd("nazev_casti"),
     Optional('isbn'): strAndISBN("isbn"),
     Optional('isbn_souboru_publikaci'): strAndISBN("isbn_souboru_publikaci"),
-    Optional('author1'): strAnd("author1"),
-    Optional('author2'): strAnd("author2"),
-    Optional('author3'): strAnd("author3"),
+    Optional('autor1'): strAnd("autor1"),
+    Optional('autor2'): strAnd("autor2"),
+    Optional('autor3'): strAnd("autor3"),
     Optional('nakladatel_vydavatel'): strAnd("nakladatel_vydavatel"),
     Optional('vydano_v_koedici_s'): strAnd("vydano_v_koedici_s"),
     Optional('cena'): Use(
@@ -66,14 +64,14 @@ EpublicationValidator = Schema({
     Optional('jednotka_ceny'): strAnd("jednotka_ceny"),
     Optional("url"): strAnd("url"),
     Optional("anotace"): strAnd("anotace"),
-    Optional("libraries_that_can_access"): And(
+    Optional("zpristupneni"): And(
         lambda x: set(x).issubset(libraries.LIBRARY_IDS),
         error=(
             "Špatně zadaný parametr `libraries_that_can_access`. "
             "Očekávána hodnota ze subsetu %s." % repr(libraries.LIBRARY_IDS)
         )
     ),
-    Optional("category_for_riv"): And(
+    Optional("riv"): And(
         int,
         lambda x: x in riv.RIV_CAT_IDS,
         error=(
