@@ -10,6 +10,7 @@ from schema import And
 from schema import Use
 from schema import Schema
 from schema import Optional
+from schema import SchemaError
 
 from isbn_validator import is_valid_isbn
 
@@ -93,6 +94,11 @@ EpublicationValidator = Schema({
         )
     ),
 })
+EpublicationValidator.__doc__ = """Validator of Epublication structure as it \
+goes to edeposit input.
+
+Validation is done by calling :meth:`.validate`.
+"""
 
 
 def czech_to_edeposit_dict(czech_dict):
