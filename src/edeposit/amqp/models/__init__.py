@@ -4,6 +4,7 @@
 # Interpreter version: python 2.7
 #
 # Imports =====================================================================
+from epublication import SchemaError
 from epublication import EpublicationValidator
 from epublication import czech_to_edeposit_dict
 from epublication import edeposit_to_czech_dict
