@@ -4,6 +4,8 @@
 # Interpreter version: python 2.7
 #
 # Imports =====================================================================
+from functools import partial
+
 from schema import And
 from schema import Use
 from schema import Schema
@@ -20,110 +22,50 @@ def _str_error(what):
     return "Špatně zadána položka `%s`. Očekáván neprázdný řetězec." % what
 
 
+def strAnd(item_name):
+    return And(basestring, len, error=_str_error(item_name))
+
+
+def strAndISBN(item_name):
+    return And(
+        basestring,
+        len,
+        is_valid_isbn,
+        error=(
+            "`%s` je špatného datového typu, či s neplatným "
+            "kontrolním součtem."
+        ) % item_name
+    )
+
+
 EpublicationValidator = Schema({
-    'title': And(
-        basestring,
-        len,
-        error=_str_error("title")
-    ),
-    'poradi_vydani': And(
-        basestring,
-        len,
-        error=_str_error("poradi_vydani")
-    ),
-    'misto_vydani': And(
-        basestring,
-        len,
-        error=_str_error("misto_vydani")
-    ),
+    'title': strAnd("title"),
+    'poradi_vydani': strAnd("poradi_vydani"),
+    'misto_vydani': strAnd("misto_vydani"),
     'rok_vydani': Use(
         int,
         error="Nesprávný formát pro `rok_vydani`. Očekáván int."
     ),
-    'zpracovatel_zaznamu': And(
-        basestring,
-        len,
-        error=_str_error("zpracovatel_zaznamu")
-    ),
+    'zpracovatel_zaznamu': strAnd("zpracovatel_zaznamu"),
 
     # optionals
-    Optional('podnazev'): And(
-        basestring,
-        len,
-        error=_str_error("podnazev")
-    ),
-    Optional('cast'): And(
-        basestring,
-        len,
-        error=_str_error("cast")
-    ),
-    Optional('nazev_casti'): And(
-        basestring,
-        len,
-        error=_str_error("nazev_casti")
-    ),
-    Optional('isbn'): And(
-        basestring,
-        len,
-        is_valid_isbn,
-        error=(
-            "`isbn` je špatného datového typu, či s neplatným kontrolním "
-            "součtem."
-        )
-    ),
-    Optional('isbn_souboru_publikaci'): And(
-        basestring,
-        len,
-        is_valid_isbn,
-        error=(
-            "`isbn_souboru_publikaci` je špatného datového typu, či s "
-            "neplatným kontrolním součtem."
-        )
-    ),
-    Optional('author1'): And(
-        basestring,
-        len,
-        error=_str_error("author1")
-    ),
-    Optional('author2'): And(
-        basestring,
-        len,
-        error=_str_error("author2")
-    ),
-    Optional('author3'): And(
-        basestring,
-        len,
-        error=_str_error("author3")
-    ),
-    Optional('nakladatel_vydavatel'): And(
-        basestring,
-        len,
-        error=_str_error("nakladatel_vydavatel")
-    ),
-    Optional('vydano_v_koedici_s'): And(
-        basestring,
-        len,
-        error=_str_error("vydano_v_koedici_s")
-    ),
+    Optional('podnazev'): strAnd("podnazev"),
+    Optional('cast'): strAnd("cast"),
+    Optional('nazev_casti'): strAnd("nazev_casti"),
+    Optional('isbn'): strAndISBN("isbn"),
+    Optional('isbn_souboru_publikaci'): strAndISBN("isbn_souboru_publikaci"),
+    Optional('author1'): strAnd("author1"),
+    Optional('author2'): strAnd("author2"),
+    Optional('author3'): strAnd("author3"),
+    Optional('nakladatel_vydavatel'): strAnd("nakladatel_vydavatel"),
+    Optional('vydano_v_koedici_s'): strAnd("vydano_v_koedici_s"),
     Optional('cena'): Use(
         float,
         error="Špatně zadaný parametr `cena`. Očekávána hodnota typu float."
     ),
-    Optional('jednotka_ceny'): And(
-        basestring,
-        len,
-        error=_str_error("jednotka_ceny")
-    ),
-    Optional("url"): And(
-        basestring,
-        len,
-        error=_str_error("url")
-    ),
-    Optional("anotace"): And(
-        basestring,
-        len,
-        error=_str_error("anotace")
-    ),
+    Optional('jednotka_ceny'): strAnd("jednotka_ceny"),
+    Optional("url"): strAnd("url"),
+    Optional("anotace"): strAnd("anotace"),
     Optional("libraries_that_can_access"): And(
         lambda x: set(x).issubset(libraries.LIBRARY_IDS),
         error=(
