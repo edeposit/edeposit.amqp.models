@@ -7,8 +7,9 @@
 
 
 # Variables ===================================================================
-DEFAULT_LIBRARY = 'narodni-knihovna-ceske-republiky'
+DEFAULT_LIBRARY = 'narodni-knihovna-ceske-republiky'  #:
 
+#: Dictionary used to map libraries to their descriptions.
 LIBRARY_MAP = {
     'moravska-zemska-knihovna-v-brne': 'Moravská zemská knihovna v Brně',
     'vedecka-knihovna-v-olomouci': 'Vědecká knihovna v Olomouci',
@@ -26,4 +27,5 @@ LIBRARY_MAP = {
     'krajska-knihovna-frantiska-bartose-ve-zline': 'Krajská knihovna Františka Bartoše ve Zlíně',
 }
 
+#: List of ID's of libraries.
 LIBRARY_IDS = set(LIBRARY_MAP.keys())

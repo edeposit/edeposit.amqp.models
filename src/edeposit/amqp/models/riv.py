@@ -7,6 +7,7 @@
 
 
 # Variables ===================================================================
+#: Categories used to choose RIV
 RIV_CATEGORIES = [
     (1, "společenské, humanitní a umělecké vědy (SHVa)"),
     (2, "společenské vědy (SHVb)"),
@@ -21,6 +22,7 @@ RIV_CATEGORIES = [
     (11, "lékařské vědy (pouze pilíř II.)"),
 ]
 
+#: ID's used to choose category
 RIV_CAT_IDS = [
     row[0]
     for row in RIV_CATEGORIES
