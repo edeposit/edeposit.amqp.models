@@ -36,7 +36,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'edeposit.amqp.models'
-copyright = '2015, Jan Stavěl'
+copyright = '2015, Edeposit team'
 
 # The full version, including alpha/beta/rc tags.
 try:
