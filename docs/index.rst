@@ -6,9 +6,9 @@ Welcome in the ``edeposit.amqp.models`` documentation.
 API documentation
 -----------------
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 3
 
-    api/modules
+    api/models
 
 
 Installation
