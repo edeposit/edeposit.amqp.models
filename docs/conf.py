@@ -4,7 +4,7 @@ import os
 import sys
 import urllib
 
-sys.path.append('../src/edeposit.amqp.models')
+sys.path.append('../src/edeposit/amqp')
 
 extensions = [
     'sphinx.ext.autodoc',

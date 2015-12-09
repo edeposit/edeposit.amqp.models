@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.2.2
+-----
+    - Docstring fixed.
+
 0.2.1
 -----
     - Fixed unicode problem, which breaks readthedocs.
