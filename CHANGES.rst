@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.2.3
+-----
+    - Fixed README.
+
 0.2.2
 -----
     - Docstring fixed.
